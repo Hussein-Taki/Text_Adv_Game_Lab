@@ -17,5 +17,11 @@
 	public:
 		Player(const std::string& name, int health);
 
+		void set_location(Room* new_location);
+		Room* get_location() const;
+
+		
+	
+
 };
 

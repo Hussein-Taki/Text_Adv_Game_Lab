@@ -24,14 +24,14 @@ int main() {
 	// Create a Player
 	Player player("Alice", 100);
 	// Set the player's starting location
-	player.SetLocation(&startRoom);
+	player.set_location(&startRoom);
 	// Game loop (basic interaction)
 	while (true) {
-		std::cout << "Current Location: " << player.GetLocation() -> GetDescription() << std::endl;
+		std::cout << "Current Location: " << player.get_location() -> GetDescription() << std::endl;
 		std::cout << "Items in the room:" << std::endl;
-		for (const Item& item : player.GetLocation()->GetItems()) {
-			std::cout << "- " << item.GetName() << ": " <<
-				item.GetDescription() << std::endl;
+		for (const Item& item : player.get_location()->GetItems()) {
+			std::cout << "- " << item.get_item_name() << ": " <<
+				item.get_description() << std::endl;
 		}
 		std::cout << "Options: ";
 		std::cout << "1. Look around | ";
@@ -49,8 +49,8 @@ int main() {
 			std::cout << "Enter the name of the item you want to interact with: ";
 				std::string itemName;
 			std::cin >> itemName;
-			for (Item& item : player.GetLocation()->GetItems()) {
-				if (item.GetName() == itemName) {
+			for (Item& item : player.get_location()->GetItems()) {
+				if (item.get_item_name() == itemName) {
 					item.Interact();
 					break;
 				}
@@ -61,9 +61,9 @@ int main() {
 			std::cout << "Enter the direction (e.g., north, south): ";
 			std::string direction;
 			std::cin >> direction;
-			Room* nextRoom = player.GetLocation()->GetExit(direction);
+			Room* nextRoom = player.get_location()->GetExit(direction);
 			if (nextRoom != nullptr) {
-				player.SetLocation(nextRoom);
+				player.set_location(nextRoom);
 				std::cout << "You move to the next room." << std::endl;
 			}
 			else {
