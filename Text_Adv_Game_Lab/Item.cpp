@@ -25,9 +25,9 @@ void Item::Interact() {
         if (pickup == "y") {
 			std::cout << "You picked up " << item_name << endl;
             //add to item to inventory vector
-            return Item;
-          //  std::vector<Item> inventory;
-            //inventory.push_back(Item);
+           // return Item;
+           std::vector<Item> inventory;
+            inventory.push_back(Item);
 
 		}
         else {
