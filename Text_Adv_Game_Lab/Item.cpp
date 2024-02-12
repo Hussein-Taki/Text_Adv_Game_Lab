@@ -34,4 +34,5 @@ void Item::Interact() {
 			std::cout << "You did not pick up " << item_name << endl;
 		}
 	}
+//k
 // dont do that, dont include chracter in item, make it all happen in main , so in main the player intercts with an item, picks it up which passes it to the character, the character then adds it to inventory, you also want to telll the room to remove item from room so its nnot tstill there when you pick it up
