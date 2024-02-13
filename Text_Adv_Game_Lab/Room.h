@@ -16,6 +16,12 @@ class Room
 		Room(const std::string& desc);
 		void AddItem(const Item& item);
 		void RemoveItem(const Item& item);
+
+			
+		
+
+		
+
 	};
 
 
