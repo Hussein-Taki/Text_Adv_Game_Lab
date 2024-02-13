@@ -7,7 +7,7 @@ using namespace std;
 class Item
 {
 private:
-	std::string item_name;// item_name so as to avoid mix up with character name, as character.h in included in item.h
+	std::string item_name;// item_name so as to avoid mix up with character name, though unnecessary in current version
 	std::string description;
 public:
 	Item(const std::string& name, const std::string& description);

@@ -27,9 +27,9 @@ int main() {
 	player.set_location(&startRoom);
 	// Game loop (basic interaction)
 	while (true) {
-		std::cout << "Current Location: " << player.get_location() -> GetDescription() << std::endl;
+		std::cout << "Current Location: " << player.get_location() -> get_description() << std::endl;
 		std::cout << "Items in the room:" << std::endl;
-		for (const Item& item : player.get_location()->GetItems()) {
+		for (const Item& item : player.get_location()->getItemList()) { // getItemList to list all items in room
 			std::cout << "- " << item.get_item_name() << ": " <<
 				item.get_description() << std::endl;
 		}
@@ -49,7 +49,7 @@ int main() {
 			std::cout << "Enter the name of the item you want to interact with: ";
 				std::string itemName;
 			std::cin >> itemName;
-			for (Item& item : player.get_location()->GetItems()) {
+			for (Item& item : player.get_location()->getItemList()) {
 				if (item.get_item_name() == itemName) {
 					item.Interact();
 					break;
