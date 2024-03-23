@@ -30,6 +30,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="area.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="riddle_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandInterpreter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -47,10 +56,22 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="area.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="riddle_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInterpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Text_Adv_Game_Lab.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="game_map.txt" />
   </ItemGroup>
 </Project>

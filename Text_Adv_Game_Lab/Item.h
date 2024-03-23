@@ -4,21 +4,22 @@
 #include <map>
 #include <vector>
 using namespace std;
+
+
+class Character; // Forward declaration
+
 class Item
 {
 private:
-	std::string item_name;// item_name so as to avoid mix up with character name, though unnecessary in current version
-	std::string description;
+    std::string item_name;
+    std::string description;
 public:
-	Item(const std::string& name, const std::string& description);
-	void Interact();	
-	
-	void set_description(const std::string& new_description);
-	string get_description() const;
+    Item(const std::string& name, const std::string& description);
+    void Interact(Character& character);
 
-	void set_item_name(const std::string& new_item_name);
-	string get_item_name() const;
-	
+    void set_description(const std::string& new_description);
+    string get_description() const;
+
+    void set_item_name(const std::string& new_item_name);
+    string get_item_name() const;
 };
-
-

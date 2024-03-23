@@ -1,0 +1,7 @@
+startRoom|You are in the starting room.
+hallway|A long, dark hallway stretches before you.
+treasureRoom|Gleaming treasure fills this bright room.
+startRoom|hallway|north
+hallway|startRoom|south
+hallway|treasureRoom|north
+treasureRoom|hallway|south

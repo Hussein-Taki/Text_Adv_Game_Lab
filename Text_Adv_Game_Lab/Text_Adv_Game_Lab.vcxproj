@@ -127,21 +127,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="area.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="riddle_handler.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Text_Adv_Game_Lab.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="area.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="riddle_handler.h" />
     <ClInclude Include="Room.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Text_Adv_Game_Lab.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="game_map.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+    </Resource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

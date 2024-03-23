@@ -6,14 +6,17 @@
 #include "Item.h"
 using namespace std;
 class Room
-{
 
+{
+	
 private:
+	std::string name;       
 	std::string description;
 	std::map<std::string, Room*> exits;
 	std::vector<Item> items;
 public:
-	Room(const std::string& desc);
+	Room();
+	Room(const std::string& name, const std::string& desc);
 	void AddItem(const Item& item);
 	void RemoveItem(const Item& item);
 
@@ -29,8 +32,8 @@ public:
 	std::vector<Item> get_item() const;
 	
 	//list item names and descriptions in vector of strings
-	std::vector<Item> items; // Vector of Item objects
+	std::vector<Item> getItemList() const; // Vector of Item objects
 	//vector of strings so compatible with main.cpp
-	std::vector<std::string> getItemList() const;
-	////mmmm1
+	//std::vector<std::string> getItemList() const;
+	const std::map<std::string, Room*>& getExits() const; // Map of all available exits
 };
