@@ -8,33 +8,42 @@
 using namespace std;
 
 class CommandInterpreter {
-public:
-    CommandInterpreter(Player* player) : player_(player) {}
+private:
+    Player* player; 
+    RiddleHandler riddleHandler; 
 
+
+public:
+    // Constructor that accepts pointer to player object
+    CommandInterpreter(Player* player) : player(player) {}
+    //interpret commands
     void interpretCommand(const std::string& command) {
+        // Parse the command string
         std::istringstream stream(command);
         std::string action;
-        std::getline(stream, action, ' '); // Extract the action part of the command
-
+        // read the action part of the command only
+        //type of action tells progtam what to do (e.g. riddle, answer, hint)
+        std::getline(stream, action, ' '); 
+        //responses to possible actions
         if (action == "riddle") {
-            riddleHandler.presentRiddle(player_);
+            riddleHandler.giveRiddle(player);
         }
+        // player would enter:"answer piano" in order to read "piano" as answer
         else if (action == "answer") {
             std::string answer;
-            std::getline(stream, answer); // Extract the rest of the command as the answer
-            riddleHandler.EnterAnswer(player_, answer);
+            std::getline(stream, answer);
+            // remove leading whitespace to make sure the answer is read right
+            riddleHandler.EnterAnswer(player, answer);
         }
         else if (action == "hint") {
-            riddleHandler.provideHint(player_);
+            riddleHandler.giveHint(player);
         }
-        // if action or command is not recognized
+        // if action or command is not recognized, not if answer is wrong
         else {
-            std::cout << " commad not recognised "<< std::endl; 
+            std::cout << " commad not recognised " << std::endl;
         }
     }
 
-private:
-    Player* player_; // Pointer to the player object
-    RiddleHandler riddleHandler; // Instance of RiddleHandler for riddle-related commands
 };
+
 

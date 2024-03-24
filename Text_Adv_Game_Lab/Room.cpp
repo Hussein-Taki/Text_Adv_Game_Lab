@@ -32,6 +32,10 @@ Room* Room::GetExit(const std::string& direction) {
 std::string Room::get_description() const {
     return description;
 }
+// Get name of the room
+std::string Room::get_name() const {
+	return name;
+}
 
 // Get list of items in the room
 std::vector<Item> Room::getItemList() const {

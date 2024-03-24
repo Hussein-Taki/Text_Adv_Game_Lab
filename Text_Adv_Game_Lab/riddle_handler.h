@@ -7,7 +7,7 @@
 using namespace std;
 class RiddleHandler {
 public:
-    void presentRiddle(Player* player) {
+    void giveRiddle(Player* player) {
         // Present riddle to player
         std::cout << "Riddle: What has keys but can't open locks? you may ask for a hint by typing 'hint'\n type 'answer' then your answer" << std::endl;
     }
@@ -24,7 +24,7 @@ public:
         }
     }
 
-    void provideHint(Player* player) {
+    void giveHint(Player* player) {
         // Provide a hint for the current riddle
         std::cout << "Hint: It's a musical instrument." << std::endl;
     }

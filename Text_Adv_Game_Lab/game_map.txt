@@ -1,7 +1,30 @@
 startRoom|You are in the starting room.
 hallway|A long, dark hallway stretches before you.
 treasureRoom|Gleaming treasure fills this bright room.
+enchantedChamber|A room filled with magic.
+dragonLair|A dragon sleeps here, be careful, she's protective of her golden eggs!
+twistyPassage|A narrow, twisty passage.
+twiglightRoom|A room filled with the soft light of twilight, a golwoing orb floats in the center surrounded by trickling springs.
+batCave|A cave filled with bats, they screech and fly around you.
+spiderCave|A cave filled with spiders, they scuttle around you.
+goblinCave|A cave filled with goblins, they jeer and laugh at you.
 startRoom|hallway|north
 hallway|startRoom|south
 hallway|treasureRoom|north
 treasureRoom|hallway|south
+enchantedChamber|hallway|south
+hallway|enchantedChamber|north
+enchantedChamber|dragonLair|east
+dragonLair|enchantedChamber|west
+enchantedChamber|twiglightRoom|west
+twiglightRoom|enchantedChamber|east
+twiglightRoom|twistyPassage|south
+twistyPassage|twiglightRoom|north
+twistyPassage|batCave|west
+batCave|twistyPassage|east
+batCave|spiderCave|south
+spiderCave|batCave|north
+spiderCave|goblinCave|east
+goblinCave|spiderCave|west
+treasureRoom|goblinCave|east
+goblinCave|treasureRoom|west

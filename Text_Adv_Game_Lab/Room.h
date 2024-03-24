@@ -26,6 +26,8 @@ public:
 
 	//get_description
 	std::string get_description() const;
+	//get_name
+	std::string get_name() const;
 
 
 	//get_item

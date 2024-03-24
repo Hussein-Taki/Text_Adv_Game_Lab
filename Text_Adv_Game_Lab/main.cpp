@@ -4,75 +4,121 @@
 #include "Character.h"
 #include "Item.h"
 #include "Room.h"
-#include "Area.h" 
-#include "CommandInterpreter.h"
-#include "riddle_handler.h"
-/*
+#include "Area.h"
+#include "CommandInterpreter.h" 
+#include "NPC.h"
+
 int main() {
+    // Load the game area from game_map.txt
     Area gameArea;
-    gameArea.LoadMapFromFile("game_map.txt"); // Load the game area from a file
+    gameArea.LoadMapFromFile("game_map.txt");
+    // Initialize player with the name and 100 health points
+    Player player("Zeus", 100);
+    // Initialize CommandInterpreter with pointer player
+    CommandInterpreter interpreter(&player);
+    // Initialize the NPC for giant mutated squirrel
+    NPC squirrel;
 
-    // Initialize player with the name "Alice" and 100 health points
-    Player player("Alice", 100);
-
-    // Set the player's starting location based on the room retrieved from gameArea
+    // Set starting location
+    // try catch for recurring error of room not found
     try {
-        Room& startRoom = gameArea.GetRoom("startRoom"); // Use the new GetRoom method returning a Room reference
+        Room& startRoom = gameArea.GetRoom("startRoom");
         player.set_location(&startRoom);
+        // set NPC room to players starting room
+        squirrel.update(startRoom.get_name());
     }
     catch (const std::out_of_range& e) {
         std::cerr << "Error setting initial location: " << e.what() << '\n';
         return 1; // Exit the game if the starting room cannot be found
     }
 
-    // Game loop
+    // Main game loop
+    std::string command;
     while (true) {
-        // Display current location, available items, and exits
         std::cout << "Current Location: " << player.get_location()->get_description() << std::endl;
+
+        // NPC state based on current room 
+        // dont ask riddle if player is in startRoom
+        if (player.get_location()->get_name() != "startRoom") {
+
+            if (squirrel.getState() == NPC::Idle || squirrel.getState() == NPC::Aggressive) {
+                //Squirrel will ask riddle 
+                squirrel.askRiddle(&player);
+                std::cout << "Answer the riddle: ";
+                std::getline(std::cin, command);
+                if (command != "quit" && command != "exit" && command != "5") {
+                    if (!squirrel.answerRiddle(&player, command)) {
+                        std::cout << "Incorrect. Your health: " << player.get_health() << std::endl;
+                    }
+                    else {
+                        std::cout << "Correctly answered the riddle!" << std::endl;
+                        // Squirrel state reset to Idle once the riddl answered correctly
+                        squirrel.reset();
+                    }
+                    // Continue to next iteration of loop
+                    continue;
+                }
+            }
+        }
+        // Display available items and exits 
         std::cout << "Items in the room:" << std::endl;
         for (const Item& item : player.get_location()->getItemList()) {
             std::cout << "- " << item.get_item_name() << ": " << item.get_description() << std::endl;
         }
-
-        // New: Display available exits
         std::cout << "Exits available: ";
         for (const auto& exit : player.get_location()->getExits()) {
             std::cout << exit.first << " ";
         }
+ 
+        // Display options 
         std::cout << "\nOptions: ";
-        std::cout << "1. Look around | ";
-        std::cout << "2. Interact with an item | ";
-        std::cout << "3. Move to another room | ";
-        std::cout << "4. Quit" << std::endl;
-
-        // Handle player input
-        int choice;
-        std::cin >> choice;
-        switch (choice) {
-        case 1:
-            std::cout << "You look around the room." << std::endl;
+        std::cout << "1. Look around | 2. Interact with an item | 3. Move to another room | 4. Quit | 5. Enter Command Mode\n> ";
+        // Get user input
+        std::getline(std::cin, command);
+        //cases for user input
+        if (command == "4") {
+            std::cout << "Goodbye!" << std::endl;
             break;
-        case 2: {
+        }
+        else if (command == "5") {
+            std::cout << "Entering command mode. Type 'exit' to return." << std::endl;
+            while (true) {
+                std::cout << "cmd> ";
+                std::getline(std::cin, command);
+                if (command == "exit") {
+                    break;
+                }
+                interpreter.interpretCommand(command);
+            }
+            continue; // Skip the rest of the loop and prompt again
+        }
+        else if (command == "1") {
+            // This is where you would re-display the current location's description and items
+            continue; 
+        }
+        else if (command == "2") {
             std::cout << "Enter the name of the item you want to interact with: ";
             std::string itemName;
-            std::cin >> itemName;
+            std::getline(std::cin, itemName);
             bool found = false;
-            for (Item& item : player.get_location()->getItemList()) {
+            // interact with item
+            for (const Item& item : player.get_location()->getItemList()) {
                 if (item.get_item_name() == itemName) {
-                    item.Interact(player);
+                    std::cout << "You interact with the " << itemName << "." << std::endl;
+                    // Add the item to the player's inventory
+                    player.AddItem(item);
+                    // Remove the item from the room
+                    player.get_location()->RemoveItem(item);
                     found = true;
                     break;
                 }
             }
-            if (!found) {
-                std::cout << "Item not found." << std::endl;
-            }
-            break;
+            continue;
         }
-        case 3: {
+        else if (command == "3") {
             std::cout << "Enter the direction (e.g., north, south): ";
             std::string direction;
-            std::cin >> direction;
+            std::getline(std::cin, direction);
             Room* nextRoom = player.get_location()->GetExit(direction);
             if (nextRoom) {
                 player.set_location(nextRoom);
@@ -81,41 +127,14 @@ int main() {
             else {
                 std::cout << "You can't go that way." << std::endl;
             }
-            break;
+            continue;
         }
-        case 4:
-            std::cout << "Goodbye!" << std::endl;
-            return 0;
-        default:
-            std::cout << "Invalid choice. Try again." << std::endl;
-            break;
+        else {
+            std::cout << "Invalid option. Please try again." << std::endl;
         }
     }
 
     return 0;
 }
-*/
-int main() {
-    Player player; // Assumes Player has a default constructor
-    CommandInterpreter interpreter(&player); // Assumes CommandInterpreter takes a Player pointer
 
-    std::cout << "Welcome to the game! Enter commands to interact with the game world." << std::endl;
-    std::cout << "Type 'quit' to exit the game." << std::endl;
 
-    std::string command;
-    while (true) {
-        std::cout << "> ";
-        std::getline(std::cin, command);
-
-        // Check for the quit command to exit the loop
-        if (command == "quit") {
-            std::cout << "Thank you for playing. Goodbye!" << std::endl;
-            break;
-        }
-
-        // Process the entered command
-        interpreter.interpretCommand(command);
-    }
-
-    return 0;
-}

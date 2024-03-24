@@ -26,3 +26,9 @@ void Character::TakeDamage(int damage) {
     health -= damage;
     
 }
+
+// Function to add an item to the character's inventory
+void Character::AddItem(const Item& item) {
+	// Add the item to the inventory vector
+	inventory.push_back(item);
+}

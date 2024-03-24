@@ -15,6 +15,9 @@
 		Character(const std::string& name, int health);
 		void TakeDamage(int damage);
 		std::vector<Item> inventory;
+		int get_health() const { return health; }
+		//add item to inventory
+		void AddItem(const Item& item);
 	};
 	
 	class Player : public Character { // Inherit from Character
@@ -26,5 +29,8 @@
 
 		void set_location(Room* new_location);
 		Room* get_location() const;
+		
+
+
 	};
 
