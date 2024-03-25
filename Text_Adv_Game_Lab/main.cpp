@@ -12,9 +12,9 @@ int main() {
     // Load the game area from game_map.txt
     Area gameArea;
     gameArea.LoadMapFromFile("game_map.txt");
-    // Initialize player with the name and 100 health points
+    // Initialize player with the name and 100 HP
     Player player("Zeus", 100);
-    // Initialize CommandInterpreter with pointer player
+    // Initialize CommandInterpreter 
     CommandInterpreter interpreter(&player);
     // Initialize the NPC for giant mutated squirrel
     NPC squirrel;
@@ -25,7 +25,7 @@ int main() {
         Room& startRoom = gameArea.GetRoom("startRoom");
         player.set_location(&startRoom);
         // set NPC room to players starting room
-        squirrel.update(startRoom.get_name());
+        squirrel.specialState(startRoom.get_name());
     }
     catch (const std::out_of_range& e) {
         std::cerr << "Error setting initial location: " << e.what() << '\n';

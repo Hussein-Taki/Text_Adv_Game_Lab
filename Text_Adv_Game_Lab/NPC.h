@@ -9,13 +9,13 @@ public:
 
 private:
     State currentState;
-    int incorrectAnswers;
+    int wrongAnswers;
     RiddleHandler riddleHandler;
     std::string currentRoom;
 
 public:
     NPC();
-    void update(const std::string& roomName);
+    void specialState(const std::string& roomName);
     void askRiddle(Player* player);
     bool answerRiddle(Player* player, const std::string& answer);
     void reset();
