@@ -3,7 +3,7 @@
 using std::endl;
 
 Item::Item(const std::string& name, const std::string& description)
-{
+    : item_name(name), description(description) {
 }
 
 

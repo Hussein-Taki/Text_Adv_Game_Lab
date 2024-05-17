@@ -39,8 +39,10 @@ std::string Room::get_name() const {
 
 // Get list of items in the room
 std::vector<Item> Room::getItemList() const {
-    return items; // Simply return the items vector
+    //Print item descriptions in room
+    return items;
 }
+
 
 // Remove item from room when added to inventory
 void Room::RemoveItem(const Item& item) {

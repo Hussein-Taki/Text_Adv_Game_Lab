@@ -1,14 +1,26 @@
 startRoom|You are in the starting room.
+startRoom|item1|A shiny key.
+startRoom|item2|A mysterious map.
 hallway|A long, dark hallway stretches before you.
 treasureRoom|Gleaming treasure fills this bright room.
+treasureRoom|item1|A golden crown encrusted with jewels.
 enchantedChamber|A room filled with magic.
+enchantedChamber|item1|A scroll with intricate runes, you feel an energy emanating from it.
+enchantedChamber|item2|A magic wand.
+enchantedChamber|item3|A potion of invisibility.
 dragonLair|A dragon sleeps here, be careful, she's protective of her golden eggs!
+dragonLair|item1|A golden egg.
+dragonLair|item2|A dragon scale.
+dragonLair|item3|A dragon fang.
 twistyPassage|A narrow, twisty passage.
-twiglightRoom|A room filled with the soft light of twilight, a golwoing orb floats in the center surrounded by trickling springs.
+twiglightRoom|A room filled with the soft light of twilight, a glowing orb floats in the center surrounded by trickling springs.
+twiglightRoom|item1|A glowing orb.
+twiglightRoom|item2|A crystal vial filled with the water from the springs.
 batCave|A cave filled with bats, they screech and fly around you.
 spiderCave|A cave filled with spiders, they scuttle around you.
 goblinCave|A cave filled with goblins, they jeer and laugh at you.
 startRoom|hallway|north
+startRoom|hallway|east
 hallway|startRoom|south
 hallway|treasureRoom|north
 treasureRoom|hallway|south
